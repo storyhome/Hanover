@@ -1,0 +1,133 @@
+﻿@model Hanover.Models.Client
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add a New Client <br />
+                <small>We're always happy to gain new customers.</small>
+            </h1>
+        </div>
+    </div>
+    @using (Html.BeginForm("NewClient", "Client", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @Html.ValidationSummary(false)
+                <div class="form-group">
+                    @Html.LabelFor(x => x.FirstName, "First Name")
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.FirstName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.LastName, "Last Name")
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.CompanyName, "Company Name")
+                    @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Phone)
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Email)
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ContactDate, "Contact Date")
+                    @Html.TextBoxFor(x => x.ContactDate, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Client Type</label>
+                    @{
+                        var clientTypes = new List<SelectListItem>()
+                                {
+                            new SelectListItem() { Text = "Small Business" },
+                            new SelectListItem() { Text = "Individual" },
+                            new SelectListItem() { Text = "Corporation" }
+                        };
+                    }
+                    @Html.DropDownListFor(x => x.ClientType, clientTypes, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                @Html.LabelFor(x => x.Notes)
+                @Html.TextBoxFor(x => x.Notes, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>Subscribe to:</label>
+                <div>
+                    @for (var i = 0; i < Model.EmailPromos.Count; i++)
+                    {
+                        @Html.CheckBoxFor(e => e.EmailPromos[i].IsSubscribed)
+                        <span>@Model.EmailPromos[i].Title</span>
+                        @Html.HiddenFor(e => e.EmailPromos[i].Id)
+                        @Html.HiddenFor(e => e.EmailPromos[i].Title)
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Billing Address</h3>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.BillingAddress.Street)
+                        @Html.TextBoxFor(x => x.BillingAddress.Street, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.BillingAddress.City)
+                        @Html.TextBoxFor(x => x.BillingAddress.City, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.BillingAddress.State)
+                        @Html.TextBoxFor(x => x.BillingAddress.State, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.BillingAddress.Zip)
+                        @Html.TextBoxFor(x => x.BillingAddress.Zip, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Mailing Address</h3>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.MailingAddress.Street)
+                        @Html.TextBoxFor(x => x.MailingAddress.Street, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.MailingAddress.City)
+                        @Html.TextBoxFor(x => x.MailingAddress.City, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.MailingAddress.State)
+                        @Html.TextBoxFor(x => x.MailingAddress.State, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        @Html.LabelFor(x => x.MailingAddress.Zip)
+                        @Html.TextBoxFor(x => x.MailingAddress.Zip, new { @class = "form-control" })
+                    </div>
+                </div>
+                <input type="submit" class="pull-right btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+<br />
+@section Footer {
+    <p>Make sure to send new clients a welcome package.</p>
+}

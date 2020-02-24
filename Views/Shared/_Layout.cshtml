@@ -32,7 +32,7 @@
                             <span><i class="fa fa-edit fa-fw"></i> Clients</span>
                             <ul class="nav nav-second-level in">
                                 <li>
-                                    <a href="#">New Client</a>
+                                    @Html.ActionLink("New Client", "NewClient","Client")
                                 </li>
                                 <li>
                                     <a href="#">All Clients</a>
@@ -73,7 +73,14 @@
         @RenderBody()
     </div>
     <footer>
-        <p>&copy; 2016 Cypher Marketing<span class="pull-right">Contact Help Desk at 555-555-1342</span></p>
+        @if (IsSectionDefined("footer"))
+        {
+            RenderSection("Footer", false);
+        }
+        else
+        {
+            <p>&copy; 2016 Cypher Marketing<span class="pull-right">Contact Help Desk at 555-555-1342</span></p>
+        }
     </footer>
     <environment names="development">
         <script src="~/js/jquery-1.10.2.js"></script>
