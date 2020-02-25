@@ -1,26 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Hanover.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OrderingApplication.Components
+namespace Hanover.Components
 {
     public class SurveyWidget : ViewComponent
     {
+        private ISurveyService _surveyService;
+
+        public SurveyWidget(ISurveyService surveyService)
+        {
+            _surveyService = surveyService;
+        }
+
         public async Task<IViewComponentResult> InvokeAsync(int productId)
         {
-            var products = new List<SurveyProduct>()
-            {
-                new SurveyProduct() { Id = 1, Name = "Hoodies", VoteCount = 8 },
-                new SurveyProduct() { Id = 2, Name = "Banners", VoteCount = 1 },
-                new SurveyProduct() { Id = 3, Name = "Posters", VoteCount = 4 },
-                new SurveyProduct() { Id = 4, Name = "T-Shirts", VoteCount = 2 },
-            };
+            var products = _surveyService.GetSurveyProducts();
 
             if (productId > 0)
             {
-                products.FirstOrDefault(x => x.Id == productId).VoteCount += 1;
+                _surveyService.IncreaseVoteCount(productId);
                 return View("Results", products);
             }
 

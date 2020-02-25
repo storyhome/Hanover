@@ -63,6 +63,6 @@ namespace Hanover.Controllers
         {
             return ViewComponent("SurveyWidget", new { productId = Id });
         }
-       
+
     }
 }
