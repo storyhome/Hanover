@@ -27,6 +27,7 @@ namespace Hanover
             services.AddControllersWithViews();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<ISurveyService, SurveyService>();
+            services.AddScoped<IFormDataService, JsonFormDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
