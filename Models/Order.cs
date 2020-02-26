@@ -8,21 +8,14 @@ namespace Hanover.Models
 {
     public class Order
     {
-        [Required(ErrorMessage = "We need to know who they are!")]
+        public int Id { get; set; }
         public string ClientId { get; set; }
-        [Required(ErrorMessage = "The Company Name is a must!")]
         public string CompanyName { get; set; }
-        [Required]
         public string OrderDate { get; set; }
-        [Required]
         public string Stage { get; set; }
         public List<OrderProductVM> Products { get; set; }
-        [Required]
         public string ShippingAddress { get; set; }
-        [Required]
         public string OrderInstructions { get; set; }
-        [Required]
-        [MaxLength(25)]
         public string Notes { get; set; }
     }
 
