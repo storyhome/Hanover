@@ -1,5 +1,5 @@
 ﻿.navbar, footer {
-    background-color: #5cb85c;
+    background-color: #3c3b6e;
 }
 
 .navbar-collapse {
@@ -7,7 +7,7 @@
 }
 
 .navbar-default .navbar-brand {
-    color: white;
+    color: #B22234;
 }
 
 a.active {
@@ -16,7 +16,7 @@ a.active {
 
 footer p {
     font-size: 1.25em;
-    color: white;
+    color: #B22234;
     padding: 25px;
 }
 
