@@ -9,6 +9,7 @@ namespace Hanover.Models
 {
     public class Client
     {
+        public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -30,7 +31,7 @@ namespace Hanover.Models
         [Required]
         public string NearestLocation { get; set; }
         [Required]
-        [MaxLength(25)]
+        [MaxLength(500)]
         [DataType(DataType.MultilineText)]
         [UIHint("MultilineTextLarge")]
         public string Notes { get; set; }
